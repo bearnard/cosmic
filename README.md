@@ -27,42 +27,57 @@ This flowchart illustrates the multi-stage process of converting human-readable 
 
 ```mermaid
 graph LR
-    A[LaTeX Source Code] -->|Parse with Grammar (LMG)| B(Abstract Syntax Tree - AST);
-    B -->|Optimize & Generalize| C(Equation as Directed Acyclic Graph - DAG);
-    C -->|Embed Within| D((Physics Knowledge Graph));
+    A[LaTeX Source Code]
+    B(Abstract Syntax Tree - AST)
+    C(Equation as Directed Acyclic Graph - DAG)
+    D((Physics Knowledge Graph))
+
+    A -->|"Parse with Grammar (LMG)"| B
+    B -->|"Optimize and generalize"| C
+    C -->|"Embed within"| D
 
     style A fill:#f9f,stroke:#333,stroke-width:2px
     style D fill:#bbf,stroke:#333,stroke-width:2px
 ```
-2. The Neuro-Symbolic Feedback LoopThis diagram shows the core reasoning engine from Part II. It highlights the symbiotic, self-improving cycle where the neural component (GNN) generates hypotheses and the symbolic component (ATP) verifies them, with the results feeding back to improve the entire system.
+2. The Neuro-Symbolic Feedback Loop
+This diagram shows the core reasoning engine from Part II. It highlights the symbiotic, self-improving cycle where the neural component generates hypotheses and the symbolic component verifies them, with the results feeding back to improve the entire system.
 
 ```mermaid
 graph TD
     subgraph Neuro-Symbolic Engine
-        A(Physics Knowledge Graph) -- Training Data --> B[Graph Neural Network (GNN)];
-        B -- 1. Generates Hypothesis <br> (e.g., Link Prediction) --> C{Hypothesis};
-        C -- 2. Sends for Verification --> D[Automated Theorem Prover (ATP)];
-        D -- 3a. Proof Fails --> B;
-        D -- 3b. Proof Succeeds <br> (Verification) --> E[New Verified Knowledge];
-        E -- 4. Update & Enrich --> A;
+        A(Physics Knowledge Graph) -->|Training Data| B[Graph Neural Network]
+        B -->|Generates hypothesis| C{Hypothesis}
+        C -->|Sends for verification| D[Automated Theorem Prover]
+        D -->|Proof fails| B
+        D -->|Proof succeeds| E[New Verified Knowledge]
+        E -->|Update and enrich| A
     end
 
     style B fill:#89f,stroke:#333,stroke-width:2px
     style D fill:#f98,stroke:#333,stroke-width:2px
 ```
-3. The Human-in-the-Loop Discovery CycleThis sequence diagram models the collaborative workflow between a human researcher and the AI system, as described in Part IV. It shows how human expertise guides the AI's powerful search and verification capabilities.sequenceDiagram
+3. The Human-in-the-Loop Discovery Cycle
+This sequence diagram models the collaborative workflow between a human researcher and the AI system, as described in Part IV. It shows how human expertise guides the AI's powerful search and verification capabilities.
+
+```mermaid
+sequenceDiagram
     participant Scientist
-    participant COSMIC System
+    participant COSMIC_System as "COSMIC System"
     
-    Scientist->>COSMIC System: 1. Defines research goal (e.g., "Connect QFT and Turbulence")
-    COSMIC System->>COSMIC System: 2. GNN generates ranked hypotheses
-    COSMIC System-->>Scientist: 3. Presents plausible hypotheses with evidence
+    Scientist->>COSMIC_System: 1. Defines research goal (e.g., "Connect QFT and Turbulence")
+    COSMIC_System->>COSMIC_System: 2. GNN generates ranked hypotheses
+    COSMIC_System-->>Scientist: 3. Presents plausible hypotheses with evidence
     Scientist->>Scientist: 4. Evaluates novelty and feasibility
-    Scientist->>COSMIC System: 5. Selects top hypothesis for verification
-    COSMIC System->>COSMIC System: 6. ATP attempts formal proof
-    COSMIC System-->>Scientist: 7. Presents result (Proof, Failure, or Counterexample)
-    Scientist->>COSMIC System: 8. Validates result & updates Knowledge Graph
-4. Hierarchy of Discovery MethodsThis mindmap visualizes the three distinct levels of scientific discovery the system is designed to tackle, as outlined in Part III. It progresses from data-driven empirical discovery to the uncovering of abstract, fundamental principles.mindmap
+    Scientist->>COSMIC_System: 5. Selects top hypothesis for verification
+    COSMIC_System->>COSMIC_System: 6. ATP attempts formal proof
+    COSMIC_System-->>Scientist: 7. Presents result (Proof, Failure, or Counterexample)
+    Scientist->>COSMIC_System: 8. Validates result & updates Knowledge Graph
+```
+4. Hierarchy of Discovery Methods
+This mindmap visualizes the three distinct levels of scientific discovery the system is designed to tackle, as outlined in Part III. It progresses from data-driven empirical discovery to the uncovering of abstract, fundamental principles.
+
+```mermaid
+mindmap
   root((Discovery<br/>Capabilities))
     ::icon(fa fa-search)
     Empirical Discovery
@@ -80,30 +95,31 @@ graph TD
       (Symmetry Detection)
       Uncovers fundamental principles
       Example: Finding new conservation laws
+```
 5. The Bronstein Cube of TheoriesThis diagram illustrates the conceptual framework from Part V, showing how fundamental constants (G,c,hbar) define the landscape of major physical theories. It visualizes the relationships between different domains of physics.
 ```mermaid
 graph TD
     subgraph "Bronstein Cube"
-        CM(Classical Mechanics <br> 0,0,0)
-        SR(Special Relativity <br> c)
-        NG(Newtonian Gravity <br> G)
-        QM(Quantum Mechanics <br> hbar)
-        GR(General Relativity <br> c, G)
-        QFT(Quantum Field Theory <br> c, hbar)
-        QG(Quantum Gravity <br> c, G, hbar)
+        CM(Classical Mechanics <br/> 0,0,0)
+        SR(Special Relativity <br/> c)
+        NG(Newtonian Gravity <br/> G)
+        QM(Quantum Mechanics <br/> hbar)
+        GR(General Relativity <br/> c, G)
+        QFT(Quantum Field Theory <br/> c, hbar)
+        QG(Quantum Gravity <br/> c, G, hbar)
 
-        CM -- "1/c" --> SR
-        CM -- "G" --> NG
-        CM -- "hbar" --> QM
+        CM -->|1/c| SR
+        CM -->|G| NG
+        CM -->|hbar| QM
         
-        SR -- "G" --> GR
-        NG -- "1/c" --> GR
+        SR -->|G| GR
+        NG -->|1/c| GR
         
-        SR -- "hbar" --> QFT
-        QM -- "1/c" --> QFT
+        SR -->|hbar| QFT
+        QM -->|1/c| QFT
         
-        GR -- "hbar" --> QG
-        QFT -- "G" --> QG
+        GR -->|hbar| QG
+        QFT -->|G| QG
     end
 ```
 
