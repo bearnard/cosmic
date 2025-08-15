@@ -19,6 +19,94 @@ This approach allows the AI to:
 * **Generate verifiable hypotheses** that can be formally proven or disproven.  
 * **Discover deep analogies** and hidden symmetries between different physical domains.
 
+Here are several Mermaid diagrams that visualize the key concepts, workflows, and architectures described in the COSMIC project blueprint.
+
+### 1. Knowledge Representation Pipeline
+
+This flowchart illustrates the multi-stage process of converting human-readable scientific notation into a machine-reasoning-ready format, as detailed in **Part I** of the blueprint. It shows the progression from semantically poor text to a rich, structured graph.
+
+```mermaid
+graph LR
+    A[LaTeX Source Code] -->|Parse with Grammar (LMG)| B(Abstract Syntax Tree - AST);
+    B -->|Optimize & Generalize| C(Equation as Directed Acyclic Graph - DAG);
+    C -->|Embed Within| D((Physics Knowledge Graph));
+
+    style A fill:#f9f,stroke:#333,stroke-width:2px
+    style D fill:#bbf,stroke:#333,stroke-width:2px
+```
+2. The Neuro-Symbolic Feedback LoopThis diagram shows the core reasoning engine from Part II. It highlights the symbiotic, self-improving cycle where the neural component (GNN) generates hypotheses and the symbolic component (ATP) verifies them, with the results feeding back to improve the entire system.
+
+```mermaid
+graph TD
+    subgraph Neuro-Symbolic Engine
+        A(Physics Knowledge Graph) -- Training Data --> B[Graph Neural Network (GNN)];
+        B -- 1. Generates Hypothesis <br> (e.g., Link Prediction) --> C{Hypothesis};
+        C -- 2. Sends for Verification --> D[Automated Theorem Prover (ATP)];
+        D -- 3a. Proof Fails --> B;
+        D -- 3b. Proof Succeeds <br> (Verification) --> E[New Verified Knowledge];
+        E -- 4. Update & Enrich --> A;
+    end
+
+    style B fill:#89f,stroke:#333,stroke-width:2px
+    style D fill:#f98,stroke:#333,stroke-width:2px
+```
+3. The Human-in-the-Loop Discovery CycleThis sequence diagram models the collaborative workflow between a human researcher and the AI system, as described in Part IV. It shows how human expertise guides the AI's powerful search and verification capabilities.sequenceDiagram
+    participant Scientist
+    participant COSMIC System
+    
+    Scientist->>COSMIC System: 1. Defines research goal (e.g., "Connect QFT and Turbulence")
+    COSMIC System->>COSMIC System: 2. GNN generates ranked hypotheses
+    COSMIC System-->>Scientist: 3. Presents plausible hypotheses with evidence
+    Scientist->>Scientist: 4. Evaluates novelty and feasibility
+    Scientist->>COSMIC System: 5. Selects top hypothesis for verification
+    COSMIC System->>COSMIC System: 6. ATP attempts formal proof
+    COSMIC System-->>Scientist: 7. Presents result (Proof, Failure, or Counterexample)
+    Scientist->>COSMIC System: 8. Validates result & updates Knowledge Graph
+4. Hierarchy of Discovery MethodsThis mindmap visualizes the three distinct levels of scientific discovery the system is designed to tackle, as outlined in Part III. It progresses from data-driven empirical discovery to the uncovering of abstract, fundamental principles.mindmap
+  root((Discovery<br/>Capabilities))
+    ::icon(fa fa-search)
+    Empirical Discovery
+      ::icon(fa fa-database)
+      (Symbolic Regression)
+      Finds formula from data
+      Example: AI Feynman
+    Deductive Discovery
+      ::icon(fa fa-project-diagram)
+      (GNN + ATP)
+      Verifies connections between theories
+      Example: Proving derivations
+    Abstractive Discovery
+      ::icon(fa fa-infinity)
+      (Symmetry Detection)
+      Uncovers fundamental principles
+      Example: Finding new conservation laws
+5. The Bronstein Cube of TheoriesThis diagram illustrates the conceptual framework from Part V, showing how fundamental constants (G,c,hbar) define the landscape of major physical theories. It visualizes the relationships between different domains of physics.
+```mermaid
+graph TD
+    subgraph "Bronstein Cube"
+        CM(Classical Mechanics <br> 0,0,0)
+        SR(Special Relativity <br> c)
+        NG(Newtonian Gravity <br> G)
+        QM(Quantum Mechanics <br> hbar)
+        GR(General Relativity <br> c, G)
+        QFT(Quantum Field Theory <br> c, hbar)
+        QG(Quantum Gravity <br> c, G, hbar)
+
+        CM -- "1/c" --> SR
+        CM -- "G" --> NG
+        CM -- "hbar" --> QM
+        
+        SR -- "G" --> GR
+        NG -- "1/c" --> GR
+        
+        SR -- "hbar" --> QFT
+        QM -- "1/c" --> QFT
+        
+        GR -- "hbar" --> QG
+        QFT -- "G" --> QG
+    end
+```
+
 ## **3\. The symbolic\_discovery.py Script**
 
 This repository contains the first implementation of this vision. The script is a self-contained demonstration of the core symbolic reasoning capabilities.
