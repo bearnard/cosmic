@@ -40,6 +40,7 @@ graph LR
     style D fill:#bbf,stroke:#333,stroke-width:2px
 ```
 2. The Neuro-Symbolic Feedback Loop
+
 This diagram shows the core reasoning engine from Part II. It highlights the symbiotic, self-improving cycle where the neural component generates hypotheses and the symbolic component verifies them, with the results feeding back to improve the entire system.
 
 ```mermaid
@@ -57,6 +58,7 @@ graph TD
     style D fill:#f98,stroke:#333,stroke-width:2px
 ```
 3. The Human-in-the-Loop Discovery Cycle
+
 This sequence diagram models the collaborative workflow between a human researcher and the AI system, as described in Part IV. It shows how human expertise guides the AI's powerful search and verification capabilities.
 
 ```mermaid
@@ -74,6 +76,7 @@ sequenceDiagram
     Scientist->>COSMIC_System: 8. Validates result & updates Knowledge Graph
 ```
 4. Hierarchy of Discovery Methods
+
 This mindmap visualizes the three distinct levels of scientific discovery the system is designed to tackle, as outlined in Part III. It progresses from data-driven empirical discovery to the uncovering of abstract, fundamental principles.
 
 ```mermaid
@@ -96,7 +99,9 @@ mindmap
       Uncovers fundamental principles
       Example: Finding new conservation laws
 ```
-5. The Bronstein Cube of TheoriesThis diagram illustrates the conceptual framework from Part V, showing how fundamental constants (G,c,hbar) define the landscape of major physical theories. It visualizes the relationships between different domains of physics.
+5. The Bronstein Cube of Theories
+
+This diagram illustrates the conceptual framework from Part V, showing how fundamental constants (G,c,hbar) define the landscape of major physical theories. It visualizes the relationships between different domains of physics.
 ```mermaid
 graph TD
     subgraph "Bronstein Cube"
